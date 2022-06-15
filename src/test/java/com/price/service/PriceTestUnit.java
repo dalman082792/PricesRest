@@ -35,17 +35,17 @@ public class PriceTestUnit {
 	   
 
 	    List<ParameterTest> lista =  new ArrayList<ParameterTest>();
-	    lista.add(new ParameterTest("2020-06-14 10:00:00","1","35455",35.5,1,"2020-06-14 00:00:00","2020-12-31 23:59:59",1,35455));
-	    lista.add(new ParameterTest("2020-06-14 16:00:00","1","35455",25.45,1,"2020-06-14 15:00:00","2020-06-14 18:30:00",2,35455));
-	    lista.add(new ParameterTest("2020-06-14 21:00:00","1","35455",35.5,1,"2020-06-14 00:00:00","2020-12-31 23:59:59",1,35455));
-	    lista.add(new ParameterTest("2020-06-15 10:00:00","1","35455",30.5,1,"2020-06-15 00:00:00","2020-06-15 11:00:00",3,35455));
-	    lista.add(new ParameterTest("2020-06-16 21:00:00","1","35455",38.95,1,"2020-06-15 16:00:00","2020-12-31 23:59:59",4,35455));
+	    lista.add(new ParameterTest("2020-06-14 10:00:00",35.5,1,"2020-06-14 00:00:00","2020-12-31 23:59:59",1,35455));
+	    lista.add(new ParameterTest("2020-06-14 16:00:00",25.45,1,"2020-06-14 15:00:00","2020-06-14 18:30:00",2,35455));
+	    lista.add(new ParameterTest("2020-06-14 21:00:00",35.5,1,"2020-06-14 00:00:00","2020-12-31 23:59:59",1,35455));
+	    lista.add(new ParameterTest("2020-06-15 10:00:00",30.5,1,"2020-06-15 00:00:00","2020-06-15 11:00:00",3,35455));
+	    lista.add(new ParameterTest("2020-06-16 21:00:00",38.95,1,"2020-06-15 16:00:00","2020-12-31 23:59:59",4,35455));
 	    	 
 	    for(int i=0;i<lista.size();i++) {
         mvc.perform(get("/api/pvp/price?")
         	.param("fecha_aplicacion",lista.get(i).getFecha_aplicacion())
-        	.param("grupo_id", lista.get(i).getGrupo_id())
-        	.param("producto_id", lista.get(i).getProducto_id())
+        	.param("grupo_id", lista.get(i).getBrand_id().toString())
+        	.param("producto_id", lista.get(i).getProduct_id().toString())
           .contentType(MediaType.APPLICATION_JSON))
           .andExpect(status().isOk())
           .andExpect(content()
